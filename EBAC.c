@@ -132,6 +132,7 @@ int main()//função principal que se encontra o menu de opções
  		printf("\t(1) - Registrar nomes\n");
  		printf("\t(2) - Consultar os nomes\n");
  		printf("\t(3) - Deletar os nomes\n\n");
+ 		printf("\t(4) - Sair do sistema \n\n");
  		//Final das seleções apresentadas no menu
  		
 		printf("Opção: "); //Resposta do usuário
@@ -157,6 +158,11 @@ int main()//função principal que se encontra o menu de opções
  			
  			case 3:
  			deletar();
+ 			break;
+ 			
+ 			case 4:
+ 			printf("Obrigado por utilizar o software!\n\n");
+ 			return 0;
  			break;
  			//fim da chamada das funções
 
