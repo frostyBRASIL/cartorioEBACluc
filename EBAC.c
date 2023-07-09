@@ -13,12 +13,12 @@ int registro() //função com a finalidade de cadastrar os usuários no sistema
 	char cargo [40];
 	//final da criação de variáveis/string
 	
-	printf("digite o CPF a ser cadastrado: "); //coleta de informações do usuário
+	printf("digite o CPF a ser cadastrado: "); //mostrar a mensagem na tela
 	scanf ("%s",&cpf); //%s se refere a string
 	
-	strcpy (arquivo, cpf); //responsável por copiar os valores das strings
+	strcpy (arquivo, cpf); //responsável por pegar o valor da variável cpf e transferir para a variável arquivo
 	
-	FILE *file; //cria o arquivo no banco de dados na pasta onde está salvo o sistema
+	FILE*file; //referenciação aos métodos utilizados para manipular o arquivo
 	file = fopen(arquivo, "w"); //cria o arquivo, "w" significa "escrever"
 	fprintf(file,cpf); //salvar o valor da variável
 	fclose(file); //fecha o arquivo
@@ -27,7 +27,7 @@ int registro() //função com a finalidade de cadastrar os usuários no sistema
 	fprintf(file,","); //separar a informação recebida das demais
 	fclose(file); //fecha o arquivo
 	
-	printf("Digite o nome a ser cadastrado: "); //coleta de informações do usuário
+	printf("Digite o nome a ser cadastrado: "); //mostrar a mensagem na tela
 	scanf("%s",nome);//%s se refere a string
 	
 	file = fopen(arquivo, "a");//abrir um arquivo já existente
@@ -38,7 +38,7 @@ int registro() //função com a finalidade de cadastrar os usuários no sistema
 	fprintf(file,","); //separar a informação recebida das demais
 	fclose(file); //fechar o arquivo
 	
-	printf("Digite o seu sobrenome a ser cadastrado: "); //coleta de informações do usuário
+	printf("Digite o seu sobrenome a ser cadastrado: "); //mostrar a mensagem na tela
 	scanf("%s",sobrenome); //%s se refere a string
 	
 	file = fopen (arquivo, "a"); //abrir um arquivo já existente
@@ -50,7 +50,7 @@ int registro() //função com a finalidade de cadastrar os usuários no sistema
 	fclose(file); //fechar o arquivo
 	
 	
-	printf("Digite o cargo a ser cadastrado: "); //coleta de informações do usuário
+	printf("Digite o cargo a ser cadastrado: "); //mostrar a mensagem na tela
 	scanf("%s", cargo); //%s se refere a string
 
 	
@@ -63,29 +63,29 @@ int registro() //função com a finalidade de cadastrar os usuários no sistema
 
 int consulta() //função com a finalidade de consultar os dados alocados no banco de dados
 {	
-	setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
+	setlocale(LC_ALL, "Portuguese"); //definindo o tipos de caracteres aceitos, entre as "" está definindo a linguagem
 	
 	//inicio criação de variáveis/string
 	char cpf [40];
 	char conteudo[200];
 	//final da criação de variáveis/string
 	
-	printf("Digite o CPF a ser consultado: "); //coleta de informações do usuário
+	printf("Digite o CPF a ser consultado: "); //mostrar a mensagem na tela
 	scanf("%s",cpf); //%s se refere a string
 	
-	FILE*file; //cria o arquivo no banco de dados na pasta onde está salvo o sistema
+	FILE*file; //referenciação aos métodos utilizados para manipular o arquivo
 	file = fopen(cpf,"r"); //abrir um arquivo já gravado no banco de dados, a função "r" significa abrir um arquivo texto para a leitura
 	
-	if(file == NULL) //se o arquivo não for localizado, classifique como nulo/inexistente
+	if(file == NULL) //se o programa buscar um arquivo e ele não existir, esta busca retorna null
 	{
-		printf("Não localizado. \n"); //mensagem de não localizado
+		printf("Não localizado. \n");  //mostrar a mensagem na tela
 	}
 	
-	while(fgets(conteudo, 200, file) != NULL) //procurar o arquivo "conteúdo" 200 vezes. Caso não ache, classifique como nulo/inexistente
+	while(fgets(conteudo, 200, file) != NULL) //procura de arquivo, colocando o seu valor na variável conteúdo e declara que o limite de caracteres é até 200. Verifica também se existe este conteúdo checado se é diferente de null.
 	{
 		printf("\nEssas são as informações do usuário: "); //resposta do sistema para o usuário
 		printf("%s",conteudo); //%s se refere a string
-		printf("\n\n"); //espaçamento 
+		printf("\n\n"); //quebra de linhas
 	}
 	
 	system("pause"); //espera de uma tecla ser apertada pelo usuário
@@ -96,15 +96,15 @@ int deletar() //função com a finalidade de deletar arquivos registrados nos banc
 	//inicio criação de variáveis/string
 	char cpf [40];
 	//final da criação de variáveis/string
-	printf("Digite o CPF do usuário a ser deletado: "); //coleta de informações do usuário
+	printf("Digite o CPF do usuário a ser deletado: "); //mostrar a mensagem na tela
 	scanf("%s",cpf); //%s se refere a string
 	
 	remove(cpf); //deleta o arquivo
 	
-	FILE *file; //cria o arquivo no banco de dados na pasta onde está salvo o sistema
+	FILE*file; //referenciação aos métodos utilizados para manipular o arquivo
 	file = fopen (cpf, "r"); //abrir um arquivo já gravado no banco de dados, a função "r" significa abrir um arquivo texto para a leitura
 	
-	if(file == NULL) //se o arquivo não for localizado, classifique como nulo/inexistente
+	if(file == NULL) //se o programa buscar um arquivo e ele não existir, esta busca retorna null 
 	{
 		printf("O usuário não foi encontrado no sistema! \n"); //resposta do sistema para o usuário
 		system("pause"); //espera de uma tecla ser apertada pelo usuário
@@ -114,16 +114,18 @@ int deletar() //função com a finalidade de deletar arquivos registrados nos banc
 
 int main()//função principal que se encontra o menu de opções 
 	{
-	int opcao=0; //definindo as variáveis
+	//inicio criação de variáveis/string
+	int opcao=0; 
 	int laco=1;
 	char senhadigitada[10]="a";
 	int comparacao;
+	//final da criação de variáveis/string
 	
-	printf("### Cartório da EBAC ### \n\n");
-	printf("Login de Administrador - Digite a sua senha:");
-	scanf("%s", senhadigitada);
+	printf("### Cartório da EBAC ### \n\n"); //mostrar a mensagem na tela
+	printf("Login de Administrador - Digite a sua senha:"); //mostrar a mensagem na tela
+	scanf("%s", senhadigitada); //%s se refere a string
 	
-	comparacao = strcmp(senhadigitada, "admin");
+	comparacao = strcmp(senhadigitada, "admin"); //comparar a senha digitada com a senha de acesso
 	
 	if(comparacao == 0)
 	{
@@ -131,13 +133,13 @@ int main()//função principal que se encontra o menu de opções
 		for(laco=1;laco=1;) //voltar ao menu
 		{
 		
-			system("cls");//responsável por limpar a tela 
+			system("cls"); //responsável por limpar a tela 
 	
- 			setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
+ 			setlocale(LC_ALL, "Portuguese"); //definindo o tipos de caracteres aceitos, entre as "" está definindo a linguagem
  	
  			//início do menu
  			printf("### Cartório da EBAC ### \n\n"); //apresentação do cartório da EBAC
- 			printf("Escolha a opção desejada do menu:\n\n"); //coleta de informações do usuário
+ 			printf("Escolha a opção desejada do menu:\n\n"); //mostrar a mensagem na tela
  		
  			//Início das seleções apresentadas no menu
  			printf("\t(1) - Registrar nomes\n");
@@ -152,7 +154,7 @@ int main()//função principal que se encontra o menu de opções
  	
  			scanf("%d", &opcao); //armazenando informações selecionadas
  		
- 			system ("cls");
+ 			system ("cls"); //responsável por limpar a tela 
  		
  			//início da seleção do menu
  			switch(opcao) 
@@ -179,7 +181,7 @@ int main()//função principal que se encontra o menu de opções
 
  				default:
  				printf("Você escolheu uma opção inválida\n"); //resposta do sistema para o usuário
- 				system("pause");
+ 				system("pause"); //espera de uma tecla ser apertada pelo usuário
  				break;
  			//final da seleção do menu
 			 }
@@ -187,8 +189,8 @@ int main()//função principal que se encontra o menu de opções
  	
 	 }
 	 
-	else
-	printf("Senha incorreta!");
+	else //código caso o resultado escolhido seja FALSE
+	printf("Senha incorreta!"); //mostrar a mensagem na tela
 	
 }
 
